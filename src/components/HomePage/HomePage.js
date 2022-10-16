@@ -2,22 +2,40 @@ import { useEffect, useState } from "react";
 import styled from "styled-components";
 import logo from "../../assets/img/Logo.png";
 import { getRanking } from "../../services/shortly.js";
-
+import Loader from "../../assets/loader/loader.js";
+import { useNavigate } from "react-router-dom";
 export default function HomePage() {
-  const [rankingHub, setRankingHub] = useState({});
+  const [rankingHub, setRankingHub] = useState([]);
+
+  const navigate = useNavigate();
 
   useEffect(() => {
-    getRanking().then((res) => {
-      console.log(res.data);
-      setRankingHub(res.data);
-    });
+    const fetchData = async () => {
+      const rankingRes = await getRanking();
+      setRankingHub(rankingRes.data);
+    };
+    fetchData();
   }, []);
+
+  function navAuth(type) {
+    navigate(`/auth/?type=${type}`);
+  }
 
   return (
     <Wrapper>
       <nav className="nav">
-        <h4 className="nav__content nav__content-login ">Entrar</h4>
-        <h4 className="nav__content nav__content-signup">Cadastrar-se</h4>
+        <h4
+          onClick={() => navAuth("login")}
+          className="nav__content nav__content-login "
+        >
+          Entrar
+        </h4>
+        <h4
+          onClick={() => navAuth("signup")}
+          className="nav__content nav__content-signup"
+        >
+          Cadastrar-se
+        </h4>
       </nav>
       <header className="header">
         <img className="header__img" src={logo} alt="logo" />
@@ -28,13 +46,17 @@ export default function HomePage() {
         <h2 className="ranking__title heading-secondary">Ranking</h2>
         <section className="ranking__box">
           <ul className="ranking__list">
-            {rankingHub?.map((val, index) => {
-              return (
-                <li>{`${index + 1}. ${val.name} - ${val.linkcount} links - ${
-                  val.visitscount
-                } visualizações `}</li>
-              );
-            })}
+            {rankingHub.length === 0 ? (
+              <Loader type={"spinningBubbles"} color="black" />
+            ) : (
+              rankingHub.map((val, index) => {
+                return (
+                  <li key={index}>{`${index + 1}. ${val.name} - ${
+                    val.linkcount
+                  } links - ${val.visitscount} visualizações `}</li>
+                );
+              })
+            )}
           </ul>
         </section>
       </main>
@@ -67,6 +89,12 @@ const Wrapper = styled.div`
     justify-content: space-between;
     &__content {
       font-size: 1.5rem;
+      transition: all 0.4s;
+      &:hover {
+        cursor: pointer;
+        transform: scale(1.1);
+        filter: brightness(1.2);
+      }
       &-login {
         color: #5d9040;
       }
@@ -91,10 +119,13 @@ const Wrapper = styled.div`
       padding: 2rem;
       li {
         list-style: none;
-        margin-bottom: 1rem;
+
         color: black;
         font-weight: 600;
         font-size: 1.3rem;
+        &:not(:last-child) {
+          margin-bottom: 1rem;
+        }
       }
     }
   }
