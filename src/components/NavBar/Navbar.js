@@ -1,7 +1,7 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Navbar() {
+export default function Navbar({ setForm, emptyForm }) {
   const navigate = useNavigate();
 
   function navAuth(type) {
@@ -12,13 +12,19 @@ export default function Navbar() {
       {" "}
       <nav className="nav">
         <h4
-          onClick={() => navAuth("login")}
+          onClick={() => {
+            navAuth("login");
+            setForm(emptyForm);
+          }}
           className="nav__content nav__content-login "
         >
           Entrar
         </h4>
         <h4
-          onClick={() => navAuth("signup")}
+          onClick={() => {
+            navAuth("signup");
+            setForm(emptyForm);
+          }}
           className="nav__content nav__content-signup"
         >
           Cadastrar-se

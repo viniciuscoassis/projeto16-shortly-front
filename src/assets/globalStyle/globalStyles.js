@@ -36,6 +36,9 @@ border-radius: 3px;
 .u-margin-bottom-large{
   margin-bottom: 7rem;
 }
+/* .u-button-green{
+width: ;
+} */
 `;
 
 export default GlobalStyle;
