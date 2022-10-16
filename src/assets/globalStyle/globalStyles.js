@@ -36,9 +36,16 @@ border-radius: 3px;
 .u-margin-bottom-large{
   margin-bottom: 7rem;
 }
-/* .u-button-green{
-width: ;
-} */
+.u-default-button-green{
+width: 12vw;
+       height: 5vh;
+      margin: 0 auto;
+      border: none;
+      border-radius: 4px;
+      background-color: #5d9040;
+      color: white;
+      font-weight: 700;
+      }
 `;
 
 export default GlobalStyle;

@@ -29,8 +29,6 @@ export default function AuthPage() {
       const loginPromisse = postSignIn(form);
       loginPromisse
         .then((res) => {
-          const resp = res.data;
-          console.log(resp);
           localStorage.setItem(
             "shortly",
             JSON.stringify({ token: res.data.token, timestamp: +new Date() })
@@ -105,7 +103,7 @@ export default function AuthPage() {
           </>
         )}
 
-        <button className="form__button" type="submit">
+        <button className="form__button u-default-button-green" type="submit">
           {isLogin() ? "Entrar" : "Criar Conta"}
         </button>
       </form>
@@ -135,16 +133,6 @@ const Wrapper = styled.div`
       &:not(:last-child) {
         margin-bottom: 2rem;
       }
-    }
-    &__button {
-      width: 12vw;
-      height: 5vh;
-      margin: 0 auto;
-      border: none;
-      border-radius: 4px;
-      background-color: #5d9040;
-      color: white;
-      font-weight: 700;
     }
   }
 `;

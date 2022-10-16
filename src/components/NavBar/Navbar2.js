@@ -1,33 +1,43 @@
 import { useNavigate } from "react-router-dom";
 import styled from "styled-components";
 
-export default function Navbar({ setForm, emptyForm }) {
+export default function Navbar2() {
   const navigate = useNavigate();
 
   function navAuth(type) {
-    navigate(`/auth/?type=${type}`);
+    navigate(`/${type}`);
   }
   return (
     <Wrapper>
       {" "}
       <nav className="nav">
+        <div className="nav__content nav__content-left"></div>
+
+        <div className="nav__content nav__content-right"></div>
         <h4
           onClick={() => {
-            navAuth("login");
-            setForm(emptyForm);
+            navAuth("home");
           }}
-          className="nav__content nav__content-login "
+          className="nav__content nav__content-home "
         >
-          Entrar
+          Home
         </h4>
         <h4
           onClick={() => {
-            navAuth("signup");
-            setForm(emptyForm);
+            navAuth("ranking");
           }}
-          className="nav__content nav__content-signup"
+          className="nav__content nav__content-ranking"
         >
-          Cadastrar-se
+          Ranking
+        </h4>
+        <h4
+          onClick={() => {
+            navAuth("auth");
+            localStorage.clear();
+          }}
+          className="nav__content nav__content-exit"
+        >
+          Sair
         </h4>
       </nav>
     </Wrapper>
@@ -52,12 +62,16 @@ const Wrapper = styled.nav`
       &:hover {
         transform: scale(1.1);
         filter: brightness(1.3);
+        cursor: pointer;
       }
-      &-login {
+      &-home {
         color: #5d9040;
       }
-      &-signup {
+      &-ranking {
         color: #9c9c9c;
+      }
+      &-exit {
+        border-bottom: 2px solid;
       }
     }
   }

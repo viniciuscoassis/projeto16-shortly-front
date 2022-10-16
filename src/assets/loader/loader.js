@@ -1,5 +1,5 @@
 import ReactLoading from "react-loading";
-const Loader = ({ type, color }) => (
-  <ReactLoading type={type} color={color} height={50} width={50} />
+const Loader = ({ type, color, h, w }) => (
+  <ReactLoading type={type} color={color} height={h} width={w} />
 );
 export default Loader;
