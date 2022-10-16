@@ -1,3 +1,4 @@
+import styled from "styled-components";
 import Header from "../Header/Header";
 import Navbar2 from "../NavBar/Navbar2";
 

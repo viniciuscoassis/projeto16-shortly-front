@@ -11,34 +11,38 @@ export default function Navbar2() {
     <Wrapper>
       {" "}
       <nav className="nav">
-        <div className="nav__content nav__content-left"></div>
+        <div className="nav__content nav__content-left">
+          <h4 className="nav__content nav__content-welcome">Seja bem vindo</h4>
+        </div>
 
-        <div className="nav__content nav__content-right"></div>
-        <h4
-          onClick={() => {
-            navAuth("home");
-          }}
-          className="nav__content nav__content-home "
-        >
-          Home
-        </h4>
-        <h4
-          onClick={() => {
-            navAuth("ranking");
-          }}
-          className="nav__content nav__content-ranking"
-        >
-          Ranking
-        </h4>
-        <h4
-          onClick={() => {
-            navAuth("auth");
-            localStorage.clear();
-          }}
-          className="nav__content nav__content-exit"
-        >
-          Sair
-        </h4>
+        <div className="nav__content nav__content-right">
+          {" "}
+          <h4
+            onClick={() => {
+              navAuth("home");
+            }}
+            className="nav__content nav__content-home "
+          >
+            Home
+          </h4>
+          <h4
+            onClick={() => {
+              navAuth("ranking");
+            }}
+            className="nav__content nav__content-ranking"
+          >
+            Ranking
+          </h4>
+          <h4
+            onClick={() => {
+              navAuth("auth");
+              localStorage.clear();
+            }}
+            className="nav__content nav__content-exit"
+          >
+            Sair
+          </h4>
+        </div>
       </nav>
     </Wrapper>
   );
@@ -47,10 +51,10 @@ export default function Navbar2() {
 const Wrapper = styled.nav`
   .nav {
     position: absolute;
-    right: 11rem;
+    right: 5rem;
     top: 2rem;
     display: flex;
-    width: 20rem;
+    width: 92%;
     height: 5rem;
     align-items: center;
     justify-content: space-between;
@@ -59,6 +63,15 @@ const Wrapper = styled.nav`
       font-size: 1.5rem;
       transition: all 0.4s;
       font-weight: 400;
+
+      &-left {
+        left: 0;
+      }
+      &-right {
+        display: flex;
+        width: 20%;
+        justify-content: space-between;
+      }
       &:hover {
         transform: scale(1.1);
         filter: brightness(1.3);
@@ -72,6 +85,9 @@ const Wrapper = styled.nav`
       }
       &-exit {
         border-bottom: 2px solid;
+      }
+      &-welcome {
+        color: #5d9040;
       }
     }
   }
