@@ -24,7 +24,7 @@ export default function HomePage() {
       <main className="main">
         <div className="ranking"></div>
         <h2 className="ranking__title heading-secondary">Ranking</h2>
-        <section className="ranking__box">
+        <section className="ranking__box u-green-box">
           <ul className="ranking__list">
             {rankingHub.length === 0 ? (
               <Loader type={"spinningBubbles"} color="black" />
@@ -62,9 +62,6 @@ const Wrapper = styled.div`
   .ranking {
     &__box {
       width: 80vw;
-      margin: 0 auto;
-      box-shadow: 0 0.2rem 0.4rem 0.3rem rgba(120, 177, 89, 0.15);
-      border-radius: 3px;
     }
     &__list {
       padding: 2rem;
