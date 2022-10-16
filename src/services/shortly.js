@@ -13,7 +13,7 @@ function postSignIn(body) {
 }
 
 function getRanking() {
-  const promisse = axios.get(`${baseUrl}/rankings`);
+  const promisse = axios.get(`${baseUrl}/ranking`);
   return promisse;
 }
 

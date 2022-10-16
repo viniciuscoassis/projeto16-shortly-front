@@ -1,7 +1,18 @@
+import { useEffect, useState } from "react";
 import styled from "styled-components";
 import logo from "../../assets/img/Logo.png";
+import { getRanking } from "../../services/shortly.js";
 
 export default function HomePage() {
+  const [rankingHub, setRankingHub] = useState({});
+
+  useEffect(() => {
+    getRanking().then((res) => {
+      console.log(res.data);
+      setRankingHub(res.data);
+    });
+  }, []);
+
   return (
     <Wrapper>
       <nav className="nav">
@@ -17,11 +28,13 @@ export default function HomePage() {
         <h2 className="ranking__title heading-secondary">Ranking</h2>
         <section className="ranking__box">
           <ul className="ranking__list">
-            <li>1. Fulaninha - 32 links - 1.703.584 visualizações</li>
-            <li>1. Fulaninha - 32 links - 1.703.584 visualizações</li>{" "}
-            <li>1. Fulaninha - 32 links - 1.703.584 visualizações</li>{" "}
-            <li>1. Fulaninha - 32 links - 1.703.584 visualizações</li>{" "}
-            <li>1. Fulaninha - 32 links - 1.703.584 visualizações</li>
+            {rankingHub?.map((val, index) => {
+              return (
+                <li>{`${index + 1}. ${val.name} - ${val.linkcount} links - ${
+                  val.visitscount
+                } visualizações `}</li>
+              );
+            })}
           </ul>
         </section>
       </main>
@@ -35,7 +48,7 @@ export default function HomePage() {
   );
 }
 
-const Wrapper = styled.body`
+const Wrapper = styled.div`
   .heading-secondary {
     display: flex;
     justify-content: center;
@@ -71,7 +84,7 @@ const Wrapper = styled.body`
     &__box {
       width: 80vw;
       margin: 0 auto;
-      box-shadow: 0 0.2rem 0.4rem 0.1rem rgba(0, 0, 0, 0.15);
+      box-shadow: 0 0.2rem 0.4rem 0.3rem rgba(120, 177, 89, 0.15);
       border-radius: 3px;
     }
     &__list {
