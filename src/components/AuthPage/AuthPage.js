@@ -41,7 +41,7 @@ export default function AuthPage() {
           value={form.name}
           onChange={handleForm}
         />
-        <button className="form__buttom" type="submit">
+        <button className="form__button" type="submit">
           a
         </button>
       </form>
@@ -50,18 +50,25 @@ export default function AuthPage() {
 }
 const Wrapper = styled.div`
   .form {
-    margin: 0 auto;
-    background-color: red;
-    width: 80vw;
+    margin: 10rem auto;
     display: flex;
     flex-direction: column;
+    width: 100%;
+
     &__input {
       border: none;
-      width: 80vw;
+      width: 50vw;
+      height: 4rem;
       display: block;
+      padding-left: 1rem;
+
       &:not(:last-child) {
         margin-bottom: 2rem;
       }
+    }
+    &__button {
+      width: 20vw;
+      margin: 0 auto;
     }
   }
 `;
