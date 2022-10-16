@@ -1,13 +1,12 @@
 import { useEffect, useState } from "react";
 import styled from "styled-components";
-import logo from "../../assets/img/Logo.png";
+
 import { getRanking } from "../../services/shortly.js";
 import Loader from "../../assets/loader/loader.js";
-import { useNavigate } from "react-router-dom";
+import Navbar from "../NavBar/Navbar";
+import Header from "../Header/Header";
 export default function HomePage() {
   const [rankingHub, setRankingHub] = useState([]);
-
-  const navigate = useNavigate();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -17,29 +16,10 @@ export default function HomePage() {
     fetchData();
   }, []);
 
-  function navAuth(type) {
-    navigate(`/auth/?type=${type}`);
-  }
-
   return (
     <Wrapper>
-      <nav className="nav">
-        <h4
-          onClick={() => navAuth("login")}
-          className="nav__content nav__content-login "
-        >
-          Entrar
-        </h4>
-        <h4
-          onClick={() => navAuth("signup")}
-          className="nav__content nav__content-signup"
-        >
-          Cadastrar-se
-        </h4>
-      </nav>
-      <header className="header">
-        <img className="header__img" src={logo} alt="logo" />
-      </header>
+      <Navbar />
+      <Header />
 
       <main className="main">
         <div className="ranking"></div>
@@ -78,36 +58,7 @@ const Wrapper = styled.div`
     color: black;
     margin: 6rem;
   }
-  .nav {
-    position: absolute;
-    right: 11rem;
-    top: 2rem;
-    display: flex;
-    width: 20rem;
-    height: 5rem;
-    align-items: center;
-    justify-content: space-between;
-    &__content {
-      font-size: 1.5rem;
-      transition: all 0.4s;
-      &:hover {
-        cursor: pointer;
-        transform: scale(1.1);
-        filter: brightness(1.2);
-      }
-      &-login {
-        color: #5d9040;
-      }
-      &-signup {
-        color: #9c9c9c;
-      }
-    }
-  }
-  .header {
-    display: flex;
-    justify-content: center;
-    margin-top: 10rem;
-  }
+
   .ranking {
     &__box {
       width: 80vw;
