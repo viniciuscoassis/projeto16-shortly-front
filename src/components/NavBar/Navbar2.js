@@ -12,7 +12,7 @@ export default function Navbar2() {
       {" "}
       <nav className="nav">
         <div className="nav__content nav__content-left">
-          <h4 className="nav__heading nav__content-welcome">Seja bem vindo</h4>
+          <h4 className="nav__heading nav__content--welcome">Seja bem vindo</h4>
         </div>
 
         <div className="nav__content nav__content-right">
@@ -21,7 +21,7 @@ export default function Navbar2() {
             onClick={() => {
               navAuth("home");
             }}
-            className="nav__heading nav__content-home "
+            className="nav__heading nav__content--home "
           >
             Home
           </h4>
@@ -29,7 +29,7 @@ export default function Navbar2() {
             onClick={() => {
               navAuth("ranking");
             }}
-            className="nav__heading nav__content-ranking"
+            className="nav__heading nav__content--ranking"
           >
             Ranking
           </h4>
@@ -38,7 +38,7 @@ export default function Navbar2() {
               navAuth("auth");
               localStorage.clear();
             }}
-            className="nav__heading nav__content-exit"
+            className="nav__heading nav__content--exit"
           >
             Sair
           </h4>
@@ -80,16 +80,16 @@ const Wrapper = styled.nav`
         justify-content: space-between;
       }
 
-      &-home {
+      &--home {
         color: #5d9040;
       }
-      &-ranking {
+      &--ranking {
         color: #9c9c9c;
       }
-      &-exit {
+      &--exit {
         border-bottom: 2px solid;
       }
-      &-welcome {
+      &--welcome {
         color: #5d9040;
       }
     }
